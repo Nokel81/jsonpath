@@ -13,12 +13,12 @@ export class JSONPath {
   static parent(obj, string) {
     assert.ok(obj instanceof Object, "obj needs to be an object");
     assert.ok(string, "we need a path");
-  
+
     let node = this.nodes(obj, string)[0];
-    let key = node.path.pop(); /* jshint unused:false */
+    node.path.pop();
     return this.value(obj, node.path);
   }
-  
+
   static apply(obj, string, fn) {
 
     assert.ok(obj instanceof Object, "obj needs to be an object");
@@ -44,7 +44,7 @@ export class JSONPath {
 
     assert.ok(obj instanceof Object, "obj needs to be an object");
     assert.ok(path, "we need a path");
-  
+
     if (value !== undefined) {
       var node = this.nodes(obj, path).shift();
       if (!node) return this._vivify(obj, path, value);
@@ -54,7 +54,7 @@ export class JSONPath {
     }
     return this.query(obj, this.stringify(path), 1).shift();
   }
-  
+
   private static _vivify(obj, string, value) {
     var self = this;
 
@@ -80,13 +80,13 @@ export class JSONPath {
   static query(obj : Object, string, count?) {
     assert.ok(obj instanceof Object, "obj needs to be an object");
     assert.ok(typeof string === 'string', "we need a path");
-  
+
     var results = this.nodes(obj, string, count)
       .map(function(r) { return r.value });
-  
+
     return results;
   }
-  
+
   static paths(obj, string, count) {
 
     assert.ok(obj instanceof Object, "obj needs to be an object");
@@ -97,7 +97,7 @@ export class JSONPath {
 
     return results;
   }
-  
+
   static nodes(obj, string, count?) {
     assert.ok(obj instanceof Object, "obj needs to be an object");
     assert.ok(string, "we need a path");
@@ -175,7 +175,7 @@ export class JSONPath {
 
     return string;
   }
-  
+
   private static _normalize(path) {
     assert.ok(path, "we need a path");
 
